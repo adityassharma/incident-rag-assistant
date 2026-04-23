@@ -1,0 +1,92 @@
+[
+  {
+    "title": "High CPU on API Gateway",
+    "symptoms": "CPU > 90%, increased latency, thread pool exhaustion",
+    "root_cause": "Memory leak in Python service due to unclosed connections",
+    "resolution": "Restarted service and deployed patch to fix connection handling",
+    "service": "API Gateway",
+    "severity": "critical",
+    "source": "Netcool"
+  },
+  {
+    "title": "Database Connection Timeout",
+    "symptoms": "Timeout errors, slow queries, connection pool exhaustion",
+    "root_cause": "Application not releasing DB connections properly",
+    "resolution": "Increased pool size and fixed connection leak in application",
+    "service": "Database",
+    "severity": "critical",
+    "source": "BigPanda"
+  },
+  {
+    "title": "Kubernetes Pod CrashLoopBackOff",
+    "symptoms": "Pods restarting repeatedly, CrashLoopBackOff status",
+    "root_cause": "Invalid environment variable configuration",
+    "resolution": "Corrected environment variables and redeployed pods",
+    "service": "Kubernetes",
+    "severity": "major",
+    "source": "Netcool"
+  },
+  {
+    "title": "Disk Space Alert on Production Server",
+    "symptoms": "Disk usage > 95%, log files growing rapidly",
+    "root_cause": "Log rotation misconfiguration",
+    "resolution": "Fixed log rotation policy and cleared old logs",
+    "service": "Infrastructure",
+    "severity": "major",
+    "source": "BigPanda"
+  },
+  {
+    "title": "High Latency in Payment Service",
+    "symptoms": "API response time > 3s, increased error rates",
+    "root_cause": "Downstream service dependency slowdown",
+    "resolution": "Scaled dependent service and optimized queries",
+    "service": "Payment Service",
+    "severity": "critical",
+    "source": "Netcool"
+  },
+  {
+    "title": "Kafka Consumer Lag Increasing",
+    "symptoms": "Lag spikes, delayed message processing",
+    "root_cause": "Consumer instances insufficient for load",
+    "resolution": "Scaled consumer group and optimized batch size",
+    "service": "Kafka",
+    "severity": "major",
+    "source": "BigPanda"
+  },
+  {
+    "title": "Memory Usage Spike in Microservice",
+    "symptoms": "Memory usage > 85%, pod restarts",
+    "root_cause": "Inefficient caching strategy",
+    "resolution": "Optimized cache eviction policy",
+    "service": "Microservice",
+    "severity": "major",
+    "source": "Netcool"
+  },
+  {
+    "title": "SSL Certificate Expiry Alert",
+    "symptoms": "Certificate expiration warning, HTTPS failures",
+    "root_cause": "Certificate not renewed on time",
+    "resolution": "Renewed SSL certificate and automated renewal process",
+    "service": "Security",
+    "severity": "critical",
+    "source": "BigPanda"
+  },
+  {
+    "title": "Load Balancer Health Check Failures",
+    "symptoms": "Instances marked unhealthy, traffic drop",
+    "root_cause": "Health check endpoint misconfiguration",
+    "resolution": "Fixed endpoint and redeployed instances",
+    "service": "Load Balancer",
+    "severity": "critical",
+    "source": "Netcool"
+  },
+  {
+    "title": "Redis Cache Miss Spike",
+    "symptoms": "Cache hit rate dropped below 50%",
+    "root_cause": "Cache eviction due to memory pressure",
+    "resolution": "Increased cache size and optimized TTL settings",
+    "service": "Redis",
+    "severity": "major",
+    "source": "BigPanda"
+  }
+]

@@ -1,0 +1,20 @@
+# Core app
+streamlit
+
+# Vector database
+chromadb
+
+# LLM (Claude API)
+anthropic
+
+# Embeddings
+sentence-transformers
+torch
+torchvision
+
+# Environment variables
+python-dotenv
+
+# Optional but useful
+pandas
+numpy
