@@ -46,22 +46,16 @@ flowchart TD
 
 ```
 incident-rag-assistant/
-│
 ├── data/
 │   └── incidents.json
-│
 ├── src/
 │   ├── ingest.py
 │   ├── retrieve.py
 │   ├── rag.py
 │   └── app.py
-│
-├── .streamlit/
-│   └── config.toml         # dark mode config
-│
 ├── chroma_db/              # persisted vector store
 ├── requirements.txt
-├── .env                    # API key (not committed to git)
+├── .env                    # API key
 └── README.md
 ```
 
