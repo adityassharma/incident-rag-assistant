@@ -2,11 +2,16 @@
 
 A lightweight AI-powered troubleshooting assistant that uses **Retrieval-Augmented Generation (RAG)** to help engineers quickly diagnose and resolve incidents using historical alert data.
 
-Built using:
-- Semantic search (embeddings)
-- Vector database retrieval
-- LLM reasoning (Claude)
-- Streamlit chat interface
+---
+
+## 🧰 Built With
+
+| Component | Technology |
+|---|---|
+| Semantic Search | Sentence Transformers |
+| Vector Database | ChromaDB |
+| LLM Reasoning | Anthropic Claude |
+| Chat Interface | Streamlit |
 
 ---
 
@@ -26,15 +31,20 @@ This project simulates that workflow using a full RAG pipeline.
 
 ```mermaid
 flowchart TD
-    A[User Query (Streamlit UI)] --> B[Embedding Model]
+    A[User Query via Streamlit UI] --> B[Embedding Model]
     B --> C[ChromaDB Vector Store]
     C --> D[Top-K Similar Incidents]
     D --> E[Context Builder]
     E --> F[Claude LLM]
     F --> G[Final Answer]
     D --> H[Similar Incidents Display]
+```
 
-📂 Project Structure
+---
+
+## 📂 Project Structure
+
+```
 incident-rag-assistant/
 │
 ├── data/
@@ -46,77 +56,98 @@ incident-rag-assistant/
 │   ├── rag.py
 │   └── app.py
 │
+├── .streamlit/
+│   └── config.toml         # dark mode config
+│
 ├── chroma_db/              # persisted vector store
 ├── requirements.txt
-├── .env
+├── .env                    # API key (not committed to git)
 └── README.md
+```
 
-▶️ How to Run the Project
+---
 
-1. Clone repository
+## ▶️ How to Run
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/yourusername/incident-rag-assistant.git
 cd incident-rag-assistant
+```
 
-2. Create virtual environment
+### 2. Create a Virtual Environment
+
+```bash
 python -m venv .venv
+```
 
-Activate:
+Activate it:
 
-Windows
+```bash
+# Windows
 .venv\Scripts\activate
 
-Mac/Linux
+# Mac/Linux
 source .venv/bin/activate
+```
 
-3. Install dependencies
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4. Add API key
+### 4. Add Your API Key
 
-Create .env file:
+Create a `.env` file in the project root:
+
+```
 ANTHROPIC_API_KEY=your_api_key_here
+```
 
-5. Ingest incident data
+### 5. Ingest Incident Data
+
+```bash
 python src/ingest.py
+```
 
-This:
-Generates embeddings
-Stores them in ChromaDB
-Persists vector database locally
+This will:
+- Generate embeddings for each incident
+- Store them in ChromaDB
+- Persist the vector database locally in `./chroma_db`
 
-6. Run Streamlit app
+### 6. Run the App
+
+```bash
 streamlit run src/app.py
+```
 
-💡 Example Queries
-"High CPU and latency on API service"
-"Database connection timeouts"
-"Kubernetes pod crash looping"
-"Redis cache miss spike"
+---
 
-✨ Features
-Semantic incident search
-RAG-based reasoning
-Chat-style UI
-Incident similarity scoring
-Persistent vector database
+## 💡 Example Queries
 
-🧾 Quick Command Summary
-# Setup environment
-python -m venv .venv
-.venv\Scripts\activate   # Windows
+- `"High CPU and latency on API service"`
+- `"Database connection timeouts"`
+- `"Kubernetes pod crash looping"`
+- `"Redis cache miss spike"`
 
-# Install dependencies
-pip install -r requirements.txt
+---
 
-# Load data into vector DB
-python src/ingest.py
+## ✨ Features
 
-# Run app
-streamlit run src/app.py
+- 🔍 Semantic incident search
+- 🤖 RAG-based reasoning with Claude
+- 💬 Chat-style UI
+- 📊 Confidence scoring and similarity distance
+- 💾 Persistent vector database
 
-📌 Notes on Persistence
-ChromaDB stores embeddings locally in ./chroma_db
-No need to re-run ingestion unless:
-dataset changes
-embedding logic changes
-database is deleted
+---
+
+## 📌 Notes on Persistence
+
+ChromaDB stores embeddings locally in `./chroma_db`. You only need to re-run `ingest.py` if:
+
+- The incident dataset changes
+- The embedding logic changes
+- The `chroma_db` folder is deleted
