@@ -72,7 +72,7 @@ incident-rag-assistant/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/incident-rag-assistant.git
+git clone https://github.com/adityassharma/incident-rag-assistant.git
 cd incident-rag-assistant
 ```
 
