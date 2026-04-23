@@ -7,7 +7,7 @@ __pycache__/
 *.py[cod]
 
 # PyCharm / IntelliJ
-.idea/
+.idea/*
 *.iml
 
 # OS files
