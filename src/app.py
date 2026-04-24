@@ -15,22 +15,17 @@ st.caption("Ask questions about past incidents to find root causes and fixes")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
 # Display chat history
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-
-
 user_query = st.chat_input("Describe your incident issue...")
 
 if user_query is not None:
 
-    # ✅ Normalize type (fixes Streamlit warning)
     user_query = str(user_query)
 
-    # Show user message
     st.session_state.messages.append({"role": "user", "content": user_query})
     with st.chat_message("user"):
         st.markdown(user_query)

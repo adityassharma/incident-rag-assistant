@@ -9,13 +9,10 @@ client = anthropic.Anthropic(
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 
-
 def build_context(results: List[Dict[str, Any]]) -> str:
     blocks = []
-
     for r in results:
         m = r["metadata"]
-
         blocks.append(f"""
 Title: {m.get('title')}
 Service: {m.get('service')}
@@ -33,11 +30,8 @@ Resolution:
 
     return "\n\n---\n\n".join(blocks)
 
-
 def generate_answer(query: str, retrieved_results: List[Dict[str, Any]]) -> str:
     context = build_context(retrieved_results)
-
-    # ✅ Explicitly typed message (fixes MessageParam warning)
     messages = [
         anthropic.types.MessageParam(
             role="user",
@@ -70,10 +64,7 @@ Provide:
         temperature=0.2,
         messages=messages
     )
-
-    # ✅ Safe extraction (fixes ThinkingBlock warning)
     text_output = []
-
     for block in response.content:
         if hasattr(block, "text"):
             text_output.append(block.text)

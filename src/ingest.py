@@ -13,14 +13,12 @@ collection = chroma_client.get_or_create_collection(name="incidents")
 def embed(text):
     return model.encode(text).tolist()
 
-
 def ingest():
     with open("data/incidents.json") as f:
         data = json.load(f)
 
     for i, incident in enumerate(data):
         text = f"{incident['title']} {incident['symptoms']} {incident['root_cause']}"
-
         collection.add(
             documents=[text],
             embeddings=[embed(text)],
@@ -29,7 +27,6 @@ def ingest():
         )
 
     print(f"Ingested {len(data)} incidents successfully!")
-
 
 if __name__ == "__main__":
     ingest()

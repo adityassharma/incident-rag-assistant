@@ -10,11 +10,8 @@ chroma_client = chromadb.PersistentClient(path="./chroma_db")
 
 collection = chroma_client.get_or_create_collection(name="incidents")
 
-
 def embed(text: str) -> List[float]:
     embedding = model.encode(text)
-
-    # Ensure it's always a list (handles ndarray / tensor / list)
     try:
         return embedding.tolist()
     except AttributeError:
@@ -23,13 +20,12 @@ def embed(text: str) -> List[float]:
 
 def retrieve(query: str, k: int = 3) -> List[Dict[str, Any]]:
     query_embedding = embed(query)
-
     results = collection.query(
         query_embeddings=[query_embedding],
         n_results=k
     )
 
-    # Safely handle None values
+    # Handle None values
     metadatas = results.get("metadatas") or [[]]
     documents = results.get("documents") or [[]]
     distances = results.get("distances") or [[]]
